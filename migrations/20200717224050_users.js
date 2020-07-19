@@ -19,7 +19,7 @@ exports.up = function(knex) {
             table.string('coffee_name').notNullable();
             table.string('description');
             table.integer('price');
-            table.double('weight');
+            table.string('weight');
             table.string('picture');
             
             table.integer('category_id').unsign().notNullable();
