@@ -22,8 +22,8 @@ exports.up = function(knex) {
             table.string('weight');
             table.string('picture');
             
-            table.integer('category_id').unsign().notNullable();
-            table.foreign('category_id').refences('categories.id');
+            table.integer('category_id').notNullable();
+            table.foreign('category_id').references('categories.id');
         })
         .createTable('brands', (table) => {
             table.increments('id').notNullable();
@@ -33,11 +33,11 @@ exports.up = function(knex) {
         .createTable('collections', (table) => {
             table.increments('id').notNullable();
             
-            table.integer('coffee_id').unsigned().notNullable();
-            table.foreign('coffee_id').refences('coffees.id');
+            table.integer('coffee_id').notNullable();
+            table.foreign('coffee_id').references('coffees.id');
 
             table.integer('brand_id').unsigned().notNullable();
-            table.foreign('brand_id').refences('brands.id');
+            table.foreign('brand_id').references('brands.id');
         });
 
 };

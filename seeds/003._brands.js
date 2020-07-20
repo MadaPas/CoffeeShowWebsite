@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
  
-  return knex('brand').insert([
+  return knex('brands').insert([
     { name: "cold-coffee-brand", address: "COLD-line street" },
     { name: "hot-coffee-brand", address: "HOT-line street" },
     { name: "coffee-beans-brand", address: "BEANS-street"},

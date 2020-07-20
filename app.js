@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 
 
-
 // Enable express to parse json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
