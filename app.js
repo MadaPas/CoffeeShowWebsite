@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bcrypt = require('bcrypt');
 
 
 // Enable express to parse json
@@ -34,6 +35,13 @@ const knex = Knex(knexFile.development); // This is how you can have different e
 // Connect the knex to our objection model, so that objection knows to use knex
 Model.knex(knex);
 
+const saltRounds = 12;
+bcrypt.hash("admin_pass", saltRounds, function(err, hash) {
+    console.log("admin:", hash);
+});
+bcrypt.hash("user_pass", saltRounds, function(err, hash) {
+    console.log("user:", hash);
+});
 
 /* 
     Start server 
