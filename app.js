@@ -17,6 +17,7 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use(express.static("public"));
 
 /* 
     Setup Objection + Knex 
@@ -35,13 +36,27 @@ const knex = Knex(knexFile.development); // This is how you can have different e
 // Connect the knex to our objection model, so that objection knows to use knex
 Model.knex(knex);
 
-const saltRounds = 12;
-bcrypt.hash("admin_pass", saltRounds, function(err, hash) {
-    console.log("admin:", hash);
-});
-bcrypt.hash("user_pass", saltRounds, function(err, hash) {
-    console.log("user:", hash);
-});
+// const saltRounds = 12;
+// bcrypt.hash("admin_pass", saltRounds, function(err, hash) {
+//     console.log("admin:", hash);
+// });
+// bcrypt.hash("user_pass", saltRounds, function(err, hash) {
+//     console.log("user:", hash);
+// });
+
+/*
+    Routes
+*/
+const userRoute = require('./routes/users.js');
+app.use(userRoute);
+const coffeeRoute = require('./routes/coffees.js');
+app.use(coffeeRoute);
+const categoryRoute = require('./routes/categories.js');
+app.use(categoryRoute);
+const brandRoute = require('./routes/brands.js');
+app.use(brandRoute);
+const collectionRoute = require('./routes/collections.js');
+app.use(collectionRoute);
 
 /* 
     Start server 
