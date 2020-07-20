@@ -1,21 +1,6 @@
 exports.seed = function(knex) {
  
   return knex('brands').select().then(brands => {
-
-
-
-
-
-    exports.seed = function(knex) {
- 
-      return knex('brands').insert([
-        { name: "cold-coffee-brand", address: "COLD-line street" },
-        { name: "hot-coffee-brand", address: "HOT-line street" },
-        { name: "coffee-beans-brand", address: "BEANS-street"},
-        { name: "tea-brand", address: "DECAF sad-*tea*-street RIP" }
-      ]);
-    
-    };
     
     return knex('collections').insert([
       { coffee_id: 1, brand_id: brands.find(brand => brand.name === 'coffee-beans-brand').id },
