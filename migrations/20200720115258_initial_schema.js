@@ -17,7 +17,7 @@ exports.up = function(knex) {
         .createTable('coffees', (table) => {
             table.integer('id').unique().notNullable();
             table.string('coffee_name').notNullable();
-            table.string('description');
+            table.text('description');
             table.integer('price');
             table.string('weight');
             table.string('picture');
