@@ -17,4 +17,13 @@ router.get('/coffees/category/:categoryId', async(req, res) => {
 
 })
 
+router.get('/coffees/name/:coffee_name', async(req, res) => {
+    const found = await Coffee.query().select().where({ 'coffee_name': req.params.coffee_name }).limit(1);
+    if (found.length > 0) {
+        return res.send({ response: found });
+    } else {
+        return res.status(400).send({ response: "No coffee of the name has found." });
+    }
+})
+
 module.exports = router;
