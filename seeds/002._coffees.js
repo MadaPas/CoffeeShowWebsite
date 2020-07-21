@@ -102,7 +102,7 @@ exports.seed = function (knex) {
     },
     {
       id: 11,
-      coffee_name: "Rooibos 'African Red Bush' Herbal Tea",
+      coffee_name: "UK - Rooibos 'African Red Bush' Herbal Tea",
       description: "Rooibos is an Afrikaans word meaning 'Red Bush'. With a broom-like exterior and reddish needle-shaped leaves, Rooibos herbal tea creates a very bright red appearance when steeped; hence, this is how it received its name.High in antioxidants and naturally delicious, South Africans have enjoyed the benefits of the African Red Bush Tea because it refreshes your senses. You don't need to add any milk or sweeteners to this already flavorful tea; with hints of nuttiness and natural sweetness, Rooibos African Tea is perfect as it is. Since it is also caffeine-free, it is perfect for those who are sensitive to caffeine.Treat yourself to the goodness of Rooibos African Red Bush Tea; you will not have regrets!",
       price: 95,
       weight: "450 gr",
@@ -112,7 +112,7 @@ exports.seed = function (knex) {
     },
     {
       id: 12,
-      coffee_name: "Sencha Kyoto Cherry Rose Tea",
+      coffee_name: "UK - Sencha Kyoto Cherry Rose Tea",
       description: "Make every day a good day with Sencha Kyoto Cherry Rose green tea. This incredible blend of the best Japanese green tea will serenade your senses and help you relax. Just imagine watching the sunrise with a warm cup of this tea in your hands. As the sweet cherry aroma wafts through the room, you'll find yourself at peace and ready to take on whatever the day may bring.Refreshing, rejuvenating, and simply delicious, Sencha Kyoto Cherry Rose green tea is a wonderful import from Japan. The cherry flavoring complements the grassy taste of the tea, giving it a very green and natural flavor. Let the tea linger on your taste buds and you'll notice even more of the amazing cherry flavor. We know that it'll become one of your favorite green teas; it's certainly one of ours!",
       price: 80,
       weight: "450 gr",
@@ -122,7 +122,7 @@ exports.seed = function (knex) {
     },
     {
       id: 13,
-      coffee_name: "Apricot Supreme Tisane ",
+      coffee_name: "UK - Apricot Supreme Tisane ",
       description: "This Supreme Apricot Tisane tea is the sweetest apricot flavor around. If you love the sweet fruit with its soft fragrance and delicious taste, you will love the fresh apricot, rosehips, hibiscus leaves, and marigold petals.With a fresh, rejuvenating flavor, the Supreme Apricot Tisane is perfect hot or cold. If you like the benefits of drinking tea and you’re looking for a warm, delicious flavor – the Supreme Apricot tea is a succulent treat that will give you all the health benefits with the entire sweet, succulent flavor. ",
       price: 55,
       weight: "450 gr",
@@ -132,7 +132,7 @@ exports.seed = function (knex) {
     },
     {
       id: 14,
-      coffee_name: "Blueberry Flavored Tea ",
+      coffee_name: "UK - Blueberry Flavored Tea ",
       description: "Blueberry flavored tea offers the tangy-tart sweetness we all love with our Chinese black tea and calendula petals for that perfect cup of tea. The fruity aroma of blueberry flavored tea is sure to put a spring in your step and a smile on your face. Sun-kissed flavored goodness in every freshly brewed cup will keep you coming back for more!",
       price: 70,
       weight: "450 gr",
