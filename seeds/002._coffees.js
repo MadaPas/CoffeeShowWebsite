@@ -2,93 +2,103 @@ exports.seed = function (knex) {
 
   return knex('coffees').insert([{
       id: 1,
-      coffee_name: "Costa Rica Reserve Coffee",
+      coffee_name: "UK - Costa Rica Reserve Coffee",
       description: "Costa Rica Reserve coffee beans are Strictly Hard Bean, meaning they are grown at elevations of 3,900ft or more. The high altitude slows the growth of the coffee trees, causing the cherries to mature much slower; the result is dense coffee cherries containing beans packed with rich flavor. Home to many micro mills, Costa Rica has devoted farmers who take pride in ensuring that their plantations only produce high-quality yields. This gourmet coffee is one of the finest coffees that Costa Rica has to offer.",
       price: 100,
       weight: "750 gr",
       picture: "costa-rica1.jpg",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 2,
-      coffee_name: "Ethiopia Yirgacheffe Coffee",
+      coffee_name: "UK - Ethiopia Yirgacheffe Coffee",
       description: "Grown on the rolling hills of southwestern Ethiopia, Yirgacheffe gourmet coffee is now known as Ethiopia's Crown and Glory because of its high quality and distinctive flavor. For decades, this Ethiopian coffee has been meticulously hand sorted and harvested. Each batch is wet processed to improve its acidity and enhance its clean floral notes. Full bodied with mild earthy flavors, this coffee is truly at its finest when we roast it medium-light; it produces a unique fragrance and a lingering intensified finish. It boasts a sweet, rich, and smooth flavor making it a strong contender for the best African coffee in the world.",
       price: 110,
       weight: "750 gr",
       picture: "ethiopia.jpg",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 3,
-      coffee_name: "Tanzania Peaberry Coffee ",
+      coffee_name: "UK - Tanzania Peaberry Coffee ",
       description: "Mount Kilimanjaro, a dormant volcano in northern Tanzania, is the highest peak in Africa at 19,330 feet. Kilimanjaro's lower slopes provide fertile soil to grow Tanzania Peaberry Coffee, and the climate provides excellent conditions for coffee trees to thrive. Grown and harvested on the slopes of Mount Kilimanjaro near the Kenyan border, this gourmet African coffee displays many of the characteristics of Kenyan coffee, though much lighter in acidity.Peaberry beans are small, round coffee beans with a cleft in the middle; they have a richer flavor than their oval- shaped counterparts, often rendering a livelier cup with a full body and distinguished aroma. Peaberry coffee is rare; only 10% of all coffee develops with this characteristic. As a result, peaberry coffee beans must be hand-sorted from the rest.",
       price: 90,
       weight: "750 gr",
       picture: "tanzania.jpg",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 4,
-      coffee_name: "Sumatra Black Satin Coffee",
+      coffee_name: "UK - Sumatra Black Satin Coffee",
       description: "This Sumatran coffee is as rich in flavor as it is in history. Amazingly, this coffee was once thought to be lost to the world; it took over 100 years for this prized cultivar to be rediscovered because it was hidden amongst the lush jungles of Sumatra. Since then, these ancient Arabica trees have been replanted near Lake Takengon in West Sumatra, which is now world-famous for its production of gourmet coffee.Sumatra 'Black Satin' coffee is darkly roasted to produce a full and heavily bodied cup with mild, earthy undertones. Low in acidity and smooth, this dark roast coffee has a smoky aroma and a slight black pepper finish. ",
       price: 100,
       weight: "750 gr",
       picture: "sumatra.jpg",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 5,
-      coffee_name: "Jamaica Blue Mountain Estate Coffee ",
+      coffee_name: "UK - Jamaica Blue Mountain Estate Coffee ",
       description: "100% pure certified Jamaica Blue Mountain Estate Coffee, Grade 1 is known throughout the world as one of the best gourmet coffees. The standard of quality for Jamaica Blue Mountain Coffee is incomparable with any other coffee because of the stringent and precise regulations; this is the reason that this particular gourmet coffee is considered one of the most exceptional coffees in the world.High-grown in a precise geographical location and under specific conditions, these Arabica beans have earned their certification as 100% Pure Jamaica Blue Mountain Estate. The amount of coffee produced is limited due to the amount of production space, and the demand is extremely high because of its exclusively rich taste and characteristics.Jamaica Blue Mountain Estate Coffee has a full body that is well-balanced; it delivers subtle acidity and a smooth chocolate finish leaving not a single trace of bitterness.",
       price: 100,
       weight: "750 gr",
       picture: "IRISH.png",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 6,
-      coffee_name: "Kenya AA Coffee ",
+      coffee_name: "UK - Kenya AA Coffee ",
       description: "Kenya AA coffee, which is grown at elevations of 4,900 to 6,800 feet, is nearing the top of the list of the world's finest Arabica bean coffees. When it comes to coffee production, Kenya has a reputation for absolute excellence, especially because it lies near the region where coffee beans originated.cThese gourmet coffee beans are grown on volcanic soils and are wet-processed; the beans are harvested, immediately removed from the cherries, and washed to remove the excess pulp. This process causes the coffee to have a full body of flavor with a heavy acidity. It also displays a gentle floral aroma as well as berry and citrus notes. ",
       price: 110,
       weight: "750 gr",
       picture: "kenya.jpg",
-      category_id: 4
+      category_id: 4,
+      size: "large"
     },
     {
       id: 7,
-      coffee_name: "Earl Grey Tea",
+      coffee_name: "UK - Earl Grey Tea",
       description: "According to legend, this flavored tea received its name from Charles Earl Grey, a man who served as Prime Minister during the 1830s under King William IV. It is said that it was given to Earl Grey as a gift from a Chinese Mandarin man in response to Grey's men saving the man's drowning son.Flavored with the oil of bergamot, a pear-shaped citrus that is grown near the Mediterranean, Earl Grey tea is a blended black tea that has an exotic complexity and aroma that is both distinctive and delightful.",
       price: 70,
       weight: "450 gr",
       picture: "earlgrey.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 8,
-      coffee_name: "Iced Tea Blend",
+      coffee_name: "UK - Iced Tea Blend",
       description: "Taste the difference that authentic loose-leaf tea makes. Our Iced Tea is a delicious blend of loose-leaf black tea that surpasses the flavors of the traditional store-bought teas. Whether you need an iced tea to cool you during the summer, or you would simply like to enjoy a steaming cup year-round, this is the classic iced tea blend for you.Brew the Iced Tea Blend using a French Press or teapot designed for loose-leaf teas. Delight in the beauty of the tea as it unfurls, and enjoy the smooth and luxurious flavor of an excellent beverage that will treat you to a little indulgence. ",
       price: 40,
       weight: "450 gr",
       picture: "iced-tea.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 9,
-      coffee_name: "Masala Chai Tea",
+      coffee_name: "UK - Masala Chai Tea",
       description: "Indulge in one of the most scrumptious Chai Teas available--Masala Chai Tea! This Broken Pekoe-grade chai features loose-leaf black tea from India and Kenya. The full-bodied tea enhances the South Indian masala spices, and the cardamom notes in the finish stand out from the lively ginger. With just a little milk and sugar to bring the flavors out, Masala Chai Tea becomes one of the best Chai Teas you'll ever experience!Chochin is the name of an ancient city in southern India near the site where this tea is grown. It's been under the rule of many different groups, including the famous Kublai Khan. The Portuguese and Dutch added a European flair to the area, but they've never lost their Indian roots. However, the cosmopolitan nature of the city is reflected in its tea. There are so many flavors that blend together to create one incredible whole. Try Masala Chai Tea today! ",
       price: 60,
       weight: "450 gr",
       picture: "masala.png",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 10,
-      coffee_name: "Formosa Oolong Tea",
+      coffee_name: "UK - Formosa Oolong Tea",
       description: "Oolong tea gets its name from the Chinese word wu-lung, meaning 'Black Dragon', because it represents a cross between green and black tea.Formosa Oolong teas are produced in Taiwan, and they yield the largest quantity of Oolong in the world. While still growing, the leaves are sometimes intentionally and slightly bruised to stimulate the fermentation process. Tea artisans that are waiting for the perfect blend of red and green leaves watch over them carefully. Leaves are then plucked as the sun rises and are laid out to wither in the hot sun. The leaves are expertly graded and passed through strict quality control for packaging.Gaining more and more popularity in the US, Formosa Oolong tea might possibly turn out to be your new favorite! This full-bodied, refreshing tea has a fruity-sweet aroma and flavor to match. Give your body something rejuvenating while enjoying a flavorful cup of tea.",
       price: 65,
       weight: "450 gr",
       picture: "formosa2.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 11,
@@ -97,7 +107,8 @@ exports.seed = function (knex) {
       price: 95,
       weight: "450 gr",
       picture: "rooibos.jpg",
-      category_id: 3 
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 12,
@@ -106,7 +117,8 @@ exports.seed = function (knex) {
       price: 80,
       weight: "450 gr",
       picture: "sencha.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 13,
@@ -115,7 +127,8 @@ exports.seed = function (knex) {
       price: 55,
       weight: "450 gr",
       picture: "apricot.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 14,
@@ -124,7 +137,8 @@ exports.seed = function (knex) {
       price: 70,
       weight: "450 gr",
       picture: "blueberry.jpg",
-      category_id: 3
+      category_id: 3,
+      size: "medium"
     },
     {
       id: 15,
@@ -133,7 +147,8 @@ exports.seed = function (knex) {
       price: 55,
       weight: "50 ml",
       picture: "ESPRESSO.png",
-      category_id: 5
+      category_id: 5,
+      size: "small medium large"
     },
     {
       id: 16,
@@ -142,7 +157,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "150 ml",
       picture: "LATTE.png",
-      category_id: 5
+      category_id: 5,
+      size: "small"
     },
     {
       id: 17,
@@ -151,7 +167,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "FRAPUCCINO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 18,
@@ -160,7 +177,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "150 ml",
       picture: "MOCHA.png",
-      category_id: 5
+      category_id: 5,
+      size: "small"
     },
     {
       id: 19,
@@ -169,7 +187,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "MACCHIATO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 20,
@@ -178,7 +197,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "90 ml",
       picture: "TURKISH-COFFEE.png",
-      category_id: 5
+      category_id: 5,
+      size: "small"
     },
     {
       id: 21,
@@ -187,7 +207,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "AMERICANO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 22,
@@ -196,7 +217,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "IRISH.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 23,
@@ -205,7 +227,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "CUBANO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 24,
@@ -214,7 +237,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "CAPPUCINO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 25,
@@ -223,7 +247,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "CORTADO.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 26,
@@ -232,7 +257,8 @@ exports.seed = function (knex) {
       price: 50,
       weight: "250 ml",
       picture: "PLAIN-COFFEE.png",
-      category_id: 5
+      category_id: 5,
+      size: "medium"
     },
     {
       id: 27,
@@ -241,7 +267,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "75 ml",
       picture: "coffee-drinks_espresso.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "small"
     },
     {
       id: 28,
@@ -250,7 +277,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "120 ml",
       picture: "coffee-drinks_double-espresso.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "small"
     },
     {
       id: 29,
@@ -259,7 +287,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "235 ml",
       picture: "coffee-drinks_red-eye.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 30,
@@ -268,7 +297,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "235 ml",
       picture: "coffee-drinks_black-eye.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 31,
@@ -277,7 +307,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "200 ml",
       picture: "coffee-drinks_americano.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 32,
@@ -286,7 +317,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "250 ml",
       picture: "coffee-drinks_long-black.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 33,
@@ -295,7 +327,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "80 ml",
       picture: "coffee-drinks_macchiato.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "small"
     },
     {
       id: 34,
@@ -304,7 +337,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "200 ml",
       picture: "coffee-drinks_long-macchiato.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 35,
@@ -313,7 +347,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "200 ml",
       picture: "coffee-drinks_cortado.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 36,
@@ -322,7 +357,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "200 ml",
       picture: "coffee-drinks_breve.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 37,
@@ -331,7 +367,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "235 ml",
       picture: "coffee-drinks_cappuccino.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 38,
@@ -340,7 +377,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "235 ml",
       picture: "coffee-drinks_flat-white.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 39,
@@ -349,7 +387,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "450 ml",
       picture: "coffee-drinks_caffe-latte.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 40,
@@ -358,7 +397,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "235 ml",
       picture: "coffee-drinks_mocha.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 41,
@@ -367,7 +407,8 @@ exports.seed = function (knex) {
       price: 75,
       weight: "150 ml",
       picture: "coffee-drinks_vienna.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "small"
     },
     {
       id: 42,
@@ -376,7 +417,8 @@ exports.seed = function (knex) {
       price: 100,
       weight: "200 ml",
       picture: "coffee-drinks_affogato.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "medium"
     },
     {
       id: 43,
@@ -385,7 +427,8 @@ exports.seed = function (knex) {
       price: 100,
       weight: "350 ml",
       picture: "coffee-drinks_cafe-au-lait.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "large"
     },
     {
       id: 44,
@@ -394,7 +437,8 @@ exports.seed = function (knex) {
       price: 100,
       weight: "450 ml",
       picture: "coffee-drinks_iced-coffee.jpg",
-      category_id: 6
+      category_id: 6,
+      size: "large"
     },
     {
       id: 45,
@@ -403,7 +447,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "200 ml",
       picture: "1.PNG",
-      category_id: 2
+      category_id: 2,
+      size: "small medium large"
     },
     {
       id: 46,
@@ -412,7 +457,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "150 ml",
       picture: "2.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "small"
     },
     {
       id: 47,
@@ -421,7 +467,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "100 ml",
       picture: "3.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "small"
     },
     {
       id: 48,
@@ -430,7 +477,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "60 ml",
       picture: "4.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "small"
     },
     {
       id: 49,
@@ -439,7 +487,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "300 ml",
       picture: "5.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "large"
     },
     {
       id: 50,
@@ -448,7 +497,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "250 ml",
       picture: "6.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "medium"
     },
     {
       id: 51,
@@ -457,7 +507,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "350 ml",
       picture: "7.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "large"
     },
     {
       id: 52,
@@ -466,7 +517,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "400 ml",
       picture: "8.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "large"
     },
     {
       id: 53,
@@ -475,7 +527,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "250 ml",
       picture: "9.PNG",
-      category_id: 1
+      category_id: 1,
+      size: "medium"
     },
     {
       id: 54,
@@ -484,7 +537,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "250 ml",
       picture: "cold brew.jpg",
-      category_id: 2
+      category_id: 2,
+      size: "medium"
     },
     {
       id: 55,
@@ -493,7 +547,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "300 ml",
       picture: "Frappe.jpg",
-      category_id: 2
+      category_id: 2,
+      size: "large"
     },
     {
       id: 56,
@@ -502,7 +557,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "350 ml",
       picture: "freakshake.jpg",
-      category_id: 2
+      category_id: 2,
+      size: "large"
     },
     {
       id: 57,
@@ -511,7 +567,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "350 ml",
       picture: "ice latte.jpg",
-      category_id: 2
+      category_id: 2,
+      size: "large"
     },
     {
       id: 58,
@@ -520,7 +577,8 @@ exports.seed = function (knex) {
       price: 60,
       weight: "250 ml",
       picture: "Cafe_Mocha.jpg",
-      category_id: 2
+      category_id: 2,
+      size: "medium"
     }
   ]);
 }

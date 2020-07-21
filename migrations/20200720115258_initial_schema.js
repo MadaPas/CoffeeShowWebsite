@@ -21,6 +21,7 @@ exports.up = function(knex) {
             table.integer('price');
             table.string('weight');
             table.string('picture');
+            table.string('type');
             
             table.integer('category_id').notNullable();
             table.foreign('category_id').references('categories.id');
