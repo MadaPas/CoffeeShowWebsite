@@ -2,7 +2,7 @@ exports.seed = function(knex) {
 
   return knex('collections').del()
     .then(() => {
-      return knex('brands').del();
+      return knex('countries').del();
     })
     .then(() => {
       return knex('coffees').del();

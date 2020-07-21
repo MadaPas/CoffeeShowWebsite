@@ -1,18 +1,18 @@
 const { Model } = require('objection');
 
-const Brand = require('./Brand.js');
+const Country = require('./Country.js');
 
 class Collection extends Model {
 
     static tableName = 'collections';
 
     static relationMappings = {
-        brand: {
+        country: {
             relation: Model.HasManyRelation,
-            modelClass: Brand,
+            modelClass: Country,
             join: {
-                from: 'collections.brandId',
-                to: 'brands.id'
+                from: 'collections.countryId',
+                to: 'countries.id'
             }
         }
 

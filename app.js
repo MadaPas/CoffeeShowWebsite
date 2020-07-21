@@ -53,8 +53,8 @@ const coffeeRoute = require('./routes/coffees.js');
 app.use(coffeeRoute);
 const categoryRoute = require('./routes/categories.js');
 app.use(categoryRoute);
-const brandRoute = require('./routes/brands.js');
-app.use(brandRoute);
+const countryRoute = require('./routes/countries.js');
+app.use(countryRoute);
 const collectionRoute = require('./routes/collections.js');
 app.use(collectionRoute);
 

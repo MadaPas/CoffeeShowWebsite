@@ -25,10 +25,10 @@ exports.up = function(knex) {
             table.integer('category_id').notNullable();
             table.foreign('category_id').references('categories.id');
         })
-        .createTable('brands', (table) => {
+        .createTable('country', (table) => {
             table.increments('id').notNullable();
             table.string('name').notNullable();
-            table.string('address').notNullable();
+            table.text('story').notNullable();
         })
         .createTable('collections', (table) => {
             table.increments('id').notNullable();
@@ -36,8 +36,8 @@ exports.up = function(knex) {
             table.integer('coffee_id').notNullable();
             table.foreign('coffee_id').references('coffees.id');
 
-            table.integer('brand_id').unsigned().notNullable();
-            table.foreign('brand_id').references('brands.id');
+            table.integer('country').unsigned().notNullable();
+            table.foreign('country').references('countries.id');
         });
 
 };
@@ -45,7 +45,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema
         .dropTableIfExists('collections')
-        .dropTableIfExists('brands')
+        .dropTableIfExists('countries')
         .dropTableIfExists('coffees')
         .dropTableIfExists('categories')
         .dropTableIfExists('users');
