@@ -26,7 +26,6 @@ router.get('/coffees/size/:coffee_size', async(req, res) => {
     } else {
         return res.status(400).send({ response: "There were no coffees of the requested size found." });
     }
-
 })
 
 // coffees by category
@@ -37,7 +36,6 @@ router.get('/coffees/category/:categoryId', async(req, res) => {
     } else {
         return res.status(400).send({ response: "There were no coffees in the requested category found." });
     }
-
 })
 
 
