@@ -1,27 +1,46 @@
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
+const session = require("express-session");
+const fs = require('fs');
 
 
 // Enable express to parse json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const session = require('express-session');
-// you need to copy the config.template.json file and fill out your secret
-const config = require('./config/config.json');
+/* session */
+const config = require("./config/config.json");
 
+// used as middleware, sits between the request and the response
 app.use(session({
     secret: config.sessionSecret,
     resave: false,
     saveUninitialized: true,
 }));
 
-app.use(express.static("public"));
+/* rate limiter */
+const rateLimit = require('express-rate-limit');
 
-/* 
-    Setup Objection + Knex 
-*/
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
+
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 8 // limit each IP to 8 requests per windowMs
+});
+
+// set specific limiter for different routes
+app.use('/register', authLimiter);
+app.use('/login', authLimiter);
+
+
+
+/* Setup Knex with Objection */
 
 const { Model } = require('objection');
 const Knex = require('knex');
@@ -44,6 +63,8 @@ Model.knex(knex);
 //     console.log("user:", hash);
 // });
 
+app.use(express.static('public'));
+
 /*
     Routes
 */
@@ -57,6 +78,8 @@ const countryRoute = require('./routes/countries.js');
 app.use(countryRoute);
 const specialtyRoute = require('./routes/specialties.js');
 app.use(specialtyRoute);
+
+
 
 /* 
     Start server 
