@@ -1,4 +1,5 @@
 node_modules
 mysqlCredentials.js
+config.json
 notes.txt
 for_later.js
