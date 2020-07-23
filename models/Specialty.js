@@ -4,14 +4,14 @@ const Country = require('./Country.js');
 
 class Collection extends Model {
 
-    static tableName = 'collections';
+    static tableName = 'specialties';
 
     static relationMappings = {
         country: {
             relation: Model.HasManyRelation,
             modelClass: Country,
             join: {
-                from: 'collections.countryId',
+                from: 'specialties.countryId',
                 to: 'countries.id'
             }
         }

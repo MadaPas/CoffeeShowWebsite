@@ -1,6 +1,6 @@
 const { Model } = require('objection');
 
-const Collection = require('./Collection.js');
+const Collection = require('./Specialty.js');
 
 class Country extends Model {
 

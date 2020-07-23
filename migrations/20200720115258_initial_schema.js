@@ -19,7 +19,7 @@ exports.up = function(knex) {
             table.string('coffee_name').notNullable();
             table.text('description');
             table.integer('price');
-            table.string('weight');
+            table.string('size');
             table.string('picture');
             table.string('type');
             
@@ -31,7 +31,7 @@ exports.up = function(knex) {
             table.string('name').notNullable();
             table.text('story').notNullable();
         })
-        .createTable('collections', (table) => {
+        .createTable('specialties', (table) => {
             table.increments('id').notNullable();
             
             table.integer('coffee_id').notNullable();
@@ -45,7 +45,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('collections')
+        .dropTableIfExists('specialties')
         .dropTableIfExists('countries')
         .dropTableIfExists('coffees')
         .dropTableIfExists('categories')

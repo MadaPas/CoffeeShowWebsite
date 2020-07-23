@@ -2,7 +2,7 @@ exports.seed = function(knex) {
  
   return knex('countries').select().then(countries => {
     
-    return knex('collections').insert([
+    return knex('specialties').insert([
       { coffee_id: 1, country_id: countries.find(country => country.name === 'UK').id },
       { coffee_id: 2, country_id: countries.find(country => country.name === 'UK').id },
       { coffee_id: 3, country_id: countries.find(country => country.name === 'UK').id },
