@@ -29,7 +29,6 @@ exports.up = function(knex) {
         .createTable('country', (table) => {
             table.increments('id').notNullable();
             table.string('name').notNullable();
-            table.text('story').notNullable();
         })
         .createTable('specialties', (table) => {
             table.increments('id').notNullable();
