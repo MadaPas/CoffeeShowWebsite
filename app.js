@@ -35,8 +35,8 @@ const authLimiter = rateLimit({
 });
 
 // set specific limiter for different routes
-app.use('/register', authLimiter);
-app.use('/login', authLimiter);
+app.use('/register-page', authLimiter);
+app.use('/login-page', authLimiter);
 
 
 
@@ -83,13 +83,13 @@ const navbar = fs.readFileSync("./public/global/navbar/navbar.html", "utf8");
 const navbarUser = fs.readFileSync("./public/global/navbar/navbar-user.html", "utf8");
 const header = fs.readFileSync("./public/global/header/header.html", "utf8");
 const footer = fs.readFileSync("./public/global/footer/footer.html", "utf8");
-const mainPage = fs.readFileSync("./public/global/main/main-page.html", "utf8");
-const homePage = fs.readFileSync("./public/home/home-page.html", "utf8");
+const mainP = fs.readFileSync("./public/global/main/main-page.html", "utf8");
+const homeP = fs.readFileSync("./public/home/home-page.html", "utf8");
 
 
 const loginPage = (req, res, next) => {
     if (!req.session.user) {
-        res.redirect('/login');
+        res.redirect('/login-page');
     } else {
         next();
     }
@@ -108,14 +108,14 @@ app.get('/', homePage, (req, res) => {
     console.log("session: ", req.sessionID);
     console.log("user: ", req.session.user);
 
-    return res.send(header + navbar + mainPage + footer);
+    return res.send(header + navbar + mainP + footer);
 })
 
-app.get('/home-page', goToLoginPage, (req, res) => {
+app.get('/home-page', loginPage, (req, res) => {
     console.log("session: ", req.sessionID);
     console.log("user: ", req.session.user);
 
-    return res.send(header + navbarUser + homePage + footer)
+    return res.send(header + navbarUser + homeP + footer)
 
 })
 
