@@ -1,5 +1,5 @@
-exports.up = function(knex) {
-  
+exports.up = function (knex) {
+
     return knex.schema
         .createTable('users', (table) => {
             table.increments('id').notNullable();
@@ -22,7 +22,7 @@ exports.up = function(knex) {
             table.string('weight');
             table.string('picture');
             table.string('size');
-            
+
             table.integer('category_id').notNullable();
             table.foreign('category_id').references('categories.id');
         })
@@ -32,7 +32,7 @@ exports.up = function(knex) {
         })
         .createTable('specialties', (table) => {
             table.increments('id').notNullable();
-            
+
             table.integer('coffee_id').notNullable();
             table.foreign('coffee_id').references('coffees.id');
 
@@ -42,7 +42,7 @@ exports.up = function(knex) {
 
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
     return knex.schema
         .dropTableIfExists('specialties')
         .dropTableIfExists('countries')
