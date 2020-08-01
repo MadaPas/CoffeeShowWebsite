@@ -79,6 +79,45 @@ app.use(countryRoute);
 const specialtyRoute = require('./routes/specialties.js');
 app.use(specialtyRoute);
 
+const navbar = fs.readFileSync("./public/global/navbar/navbar.html", "utf8");
+const navbarUser = fs.readFileSync("./public/global/navbar/navbar-user.html", "utf8");
+const header = fs.readFileSync("./public/global/header/header.html", "utf8");
+const footer = fs.readFileSync("./public/global/footer/footer.html", "utf8");
+const mainPage = fs.readFileSync("./public/global/main/main-page.html", "utf8");
+const homePage = fs.readFileSync("./public/home/home-page.html", "utf8");
+
+
+const loginPage = (req, res, next) => {
+    if (!req.session.user) {
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
+
+const homePage = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/home-page');
+    } else {
+        next();
+    }
+}
+
+
+app.get('/', homePage, (req, res) => {
+    console.log("session: ", req.sessionID);
+    console.log("user: ", req.session.user);
+
+    return res.send(header + navbar + mainPage + footer);
+})
+
+app.get('/home-page', goToLoginPage, (req, res) => {
+    console.log("session: ", req.sessionID);
+    console.log("user: ", req.session.user);
+
+    return res.send(header + navbarUser + homePage + footer)
+
+})
 
 
 /* 
