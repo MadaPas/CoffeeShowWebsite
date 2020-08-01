@@ -35,8 +35,8 @@ const authLimiter = rateLimit({
 });
 
 // set specific limiter for different routes
-app.use('/register-page', authLimiter);
-app.use('/login-page', authLimiter);
+app.use('/register', authLimiter);
+app.use('/login', authLimiter);
 
 
 
@@ -89,7 +89,7 @@ const homeP = fs.readFileSync("./public/home/home-page.html", "utf8");
 
 const loginPage = (req, res, next) => {
     if (!req.session.user) {
-        res.redirect('/login-page');
+        res.redirect('/login');
     } else {
         next();
     }
