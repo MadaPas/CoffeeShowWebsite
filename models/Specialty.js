@@ -2,7 +2,7 @@ const { Model } = require('objection');
 
 const Country = require('./Country.js');
 
-class Collection extends Model {
+class Specialty extends Model {
 
     static tableName = 'specialties';
 
@@ -20,4 +20,4 @@ class Collection extends Model {
 
 }
 
-module.exports = Collection;
+module.exports = Specialty;

@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
 
-  return knex('collections').del()
+  return knex('specialties').del()
     .then(() => {
       return knex('countries').del();
     })

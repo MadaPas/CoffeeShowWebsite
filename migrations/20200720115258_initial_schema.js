@@ -19,14 +19,14 @@ exports.up = function(knex) {
             table.string('coffee_name').notNullable();
             table.text('description');
             table.integer('price');
-            table.string('size');
+            table.string('weight');
             table.string('picture');
-            table.string('type');
+            table.string('size');
             
             table.integer('category_id').notNullable();
             table.foreign('category_id').references('categories.id');
         })
-        .createTable('country', (table) => {
+        .createTable('countries', (table) => {
             table.increments('id').notNullable();
             table.string('name').notNullable();
         })
@@ -36,8 +36,8 @@ exports.up = function(knex) {
             table.integer('coffee_id').notNullable();
             table.foreign('coffee_id').references('coffees.id');
 
-            table.integer('country').unsigned().notNullable();
-            table.foreign('country').references('countries.id');
+            table.integer('country_id').unsigned().notNullable();
+            table.foreign('country_id').references('countries.id');
         });
 
 };
