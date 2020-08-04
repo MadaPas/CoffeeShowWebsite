@@ -96,8 +96,6 @@ const authRoute = require('./routes/auth.js');
 app.use(authRoute);
 // const functionalityRoute = require('./routes/functionality.js');
 // app.use(functionalityRoute);
-// const sessionRoute = require('./routes/session.js');
-// app.use(sessionRoute);
 
 /* 
     Add html files 
@@ -107,11 +105,12 @@ const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
 const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
-
 const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
 
-
+/*
+    if there's no user logged in -> redirect to the login page
+*/
 const login = (req, res, next) => {
     if (!req.session.user) {
         res.redirect('/login');
@@ -120,7 +119,10 @@ const login = (req, res, next) => {
     }
 }
 
-const home = (req, res, next) => {
+/*
+    if there is an user logged in -> redirect to the home user page
+*/
+const home_page = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
@@ -128,21 +130,31 @@ const home = (req, res, next) => {
     }
 }
 
-app.get('/', home, (req, res) => {
-    console.log('session: ', req.sessionID);
-    console.log('user: ', req.session.user);
-
+/*
+    home index => '/'
+    home user  => '/home-page'
+*/
+app.get('/', home_page, (req, res) => {
     return res.send(header + indexNav + index + footer);
 
 })
 
 app.get('/home-page', login, (req, res) => {
-    console.log('session: ', req.sessionID);
-    console.log('user: ', req.session.user);
-
     return res.send(header + homeNav + home + footer)
 
 })
+
+/*
+    checking the user that is logged in
+*/
+router.get('/user/userSession', login, (req, res) => {
+    if(req.session.user){
+        user = req.session.user;
+        return res.send({user});
+    }
+    return res.status(404);
+});
+
 
 /* 
     Start server 

@@ -18,11 +18,14 @@ const saltRounds = 12;
 const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
-
 const register = fs.readFileSync('./public/auth/register.html', 'utf8');
 const login = fs.readFileSync('./public/auth/login.html', 'utf8');
 
-const home = (req, res, next) => {
+
+/*
+    if there is an user logged in -> redirect to the home user page
+*/
+const home_page = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
@@ -30,14 +33,11 @@ const home = (req, res, next) => {
     }
 }
 
-router.get('/register', home, (req, res) => {
+router.get('/register', home_page, (req, res) => {
     return res.send(header + indexNav + register + footer);
 })
 
-router.get('/login', home, (req, res) => {
-    console.log('session:', req.sessionID);
-    console.log('user:', req.session.user);
-
+router.get('/login', home_page, (req, res) => {
     return res.send(header + indexNav + login + footer);
 })
 
