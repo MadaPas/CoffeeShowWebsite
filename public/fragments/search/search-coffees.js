@@ -4,12 +4,12 @@ $(document).ready(function () {
 
         $('.search-coffee-result')
             .append(`<tr class="result-row">
-                            <td>${coffee[i].name}</td>
+                            <td class="coffee-name">${coffee[i].name}</td>
+                            <td><img src="./pictures/${coffee[i].picture}"></img></td>
                             <td>${coffee[i].description}</td>
                             <td>${coffee[i].price + ' Dkk'}</td>
                             <td>${coffee[i].weight}</td>
-                            <td>${coffee[i].picture}</td>
-                            <td>${coffee[i].size}</td>
+                            <td class="coffee-size">${coffee[i].size}</td>
                         </tr>`);
     }
 
