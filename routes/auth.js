@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const emailValidator = require('email-validator');
+const emailValidator = require('email-validator'); // checks email-form
 const fs = require('fs');
 
 const User = require('../models/User.js');
@@ -10,11 +10,9 @@ const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
-
 /* 
     Add html files 
 */
-
 const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
@@ -34,10 +32,16 @@ const home_page = (req, res, next) => {
     }
 }
 
+/*
+    Register page (if there's an user logged in already, redirects to user home-page)
+*/
 router.get('/register', home_page, (req, res) => {
     return res.send(header + indexNav + register + footer);
 })
 
+/*
+    Login page (if there's an user logged in already, redirects to user home-page)
+*/
 router.get('/login', home_page, (req, res) => {
     return res.send(header + indexNav + login + footer);
 })
@@ -48,35 +52,24 @@ router.get('/login', home_page, (req, res) => {
 */
 router.post('/register', async (req, res) => {
 
-    const {
-        username,
-        email,
-        password,
-        repeatedPass
-    } = req.body;
-    const isPasswordTheSame = password === repeatedPass;
+    const { username, email, password, repeatedPass } = req.body;
+    const samePassword = password === repeatedPass;
 
-    if (username && email && password && isPasswordTheSame) {
+    if (username && email && password && samePassword) {
 
-        // password requirements
         if (password.length < 8) {
             return res.status(400).send({
-                response: 'Password does not fulfill the requirements'
+                response: 'This password does not fulfill the requirements.'
             });
         } else if (!emailValidator.validate(email)) {
             return res.status(400).send({
-                response: 'Email is not valid'
+                response: 'This email is not valid.'
             });
         } else {
 
             try {
-
-                const userFound = await User.query().select().where({
-                    'username': username
-                }).limit(1);
-                const emailFound = await User.query().select().where({
-                    'email': email
-                }).limit(1);
+                const userFound = await User.query().select().where({ 'username': username }).limit(1);
+                const emailFound = await User.query().select().where({ 'email': email }).limit(1);
 
                 if (userFound.length > 0 || emailFound.length > 0) {
 
@@ -85,11 +78,7 @@ router.post('/register', async (req, res) => {
                 } else {
 
                     const hashedPassword = await bcrypt.hash(password, saltRounds);
-                    const createdUser = await User.query().insert({
-                        username,
-                        email,
-                        password: hashedPassword
-                    });
+                    const createdUser = await User.query().insert({ username, email, password: hashedPassword });
 
                     req.session.user = username;
                     return res.redirect('/login');
@@ -101,13 +90,13 @@ router.post('/register', async (req, res) => {
                 });
             }
         }
-    } else if (password && repeatedPass && !isPasswordTheSame) {
+    } else if (password && repeatedPass && !samePassword) {
         return res.status(400).send({
-            response: 'Passwords do not match. Fields: password and repeatedPass'
+            response: 'The passwords do not match.'
         });
     } else {
         return res.status(404).send({
-            response: 'Missing fields: username, password, repeatedPass'
+            response: 'There are missing fields.'
         });
     }
 
@@ -119,25 +108,19 @@ router.post('/register', async (req, res) => {
 */
 router.post('/login', async (req, res) => {
 
-    const {
-        username,
-        password
-    } = req.body;
+    const { username, password } = req.body;
 
     if (username && password) {
         try {
-            User.query().select('username').where({
-                'username': username
-            }).then(async userFound => {
+            User.query().select('username').where({ 'username': username })
+            .then(async userFound => {
                 if (userFound.length == 0) {
                     return res.redirect('/login?error');
                 } else {
-                    const matchingPassword = await User.query().select('password').where({
-                        'username': username
-                    }).limit(1);
-                    const passwordToValidate = matchingPassword[0].password;
+                    const userPassword = await User.query().select('password').where({ 'username': username }).limit(1);
+                    const validatePassword = userPassword[0].password;
 
-                    bcrypt.compare(password, passwordToValidate).then((result) => {
+                    bcrypt.compare(password, validatePassword).then((result) => {
                         if (result) {
                             req.session.user = username;
                             return res.redirect('/home-page');

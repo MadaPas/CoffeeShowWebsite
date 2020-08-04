@@ -31,7 +31,7 @@ app.use(express.static('public'));
     Socket.io
 */
 const socket = require('socket.io')
-const escape = require('escape-html');
+const escape = require('escape-html'); // Escape string for use in HTML
 const io = socket.listen(server);
 
 io.on('connection', socket => {
