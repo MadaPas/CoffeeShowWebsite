@@ -148,7 +148,7 @@ exports.seed = function (knex) {
       weight: "50 ml",
       picture: "ESPRESSO.png",
       category_id: 5,
-      size: "small medium large"
+      size: "small"
     },
     {
       id: 16,
@@ -448,7 +448,7 @@ exports.seed = function (knex) {
       weight: "200 ml",
       picture: "1.PNG",
       category_id: 2,
-      size: "small medium large"
+      size: "medium"
     },
     {
       id: 46,
