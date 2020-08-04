@@ -1,0 +1,47 @@
+<script src="./fragments/search/search-coffees.js"></script>
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="./fragments/search/search-coffees.css">
+
+
+<h3>Search Coffees</h3>
+<h7>Please type in the name of a coffee or choose the following options.</h7>
+<br>
+<br>
+
+<div>
+    <p>
+        <div class="input-group">
+            <span class="input-group-text">Coffee</span>
+            <input type="text" class="form-control" id="search-name" placeholder="Type in your wished coffee name.">
+        </div>
+    </p>
+    <p>
+        <div class="input-group">
+            <span class="input-group-text" for="category">Category</span>
+            <select class="custom-select" id="category">
+                <option selected></option>
+            </select>
+        </div>
+    </p>
+
+    <button class="btn btn-light"> Search <i class="fa fa-search"></i> </button>
+    <br>
+    <br>
+
+    <table class="table table-light table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price(aprox)</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Size</th>
+            </tr>
+        </thead>
+        <tbody class="search-coffee-result">
+
+        </tbody>
+    </table>
+</div>
