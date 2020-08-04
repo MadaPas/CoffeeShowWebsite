@@ -15,12 +15,12 @@ const saltRounds = 12;
     Add html files 
 */
 
-const header = fs.readFileSync("./public/fragments/header.html", "utf8");
-const indexNav = fs.readFileSync("./public/fragments/indexNav.html", "utf8");
-const footer = fs.readFileSync("./public/fragments/footer.html", "utf8");
+const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
+const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
+const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 
-const register = fs.readFileSync("./public/auth/register.html", "utf8");
-const login = fs.readFileSync("./public/auth/login.html", "utf8");
+const register = fs.readFileSync('./public/auth/register.html', 'utf8');
+const login = fs.readFileSync('./public/auth/login.html', 'utf8');
 
 const goToHomePage = (req, res, next) => {
     if (req.session.user) {
@@ -42,7 +42,6 @@ router.get('/login', goToHomePage, (req, res) => {
 })
 
 
-
 /*
     Register
 */
@@ -62,11 +61,11 @@ router.post('/register', async (req, res) => {
         // password requirements
         if (password.length < 8) {
             return res.status(400).send({
-                response: "Password does not fulfill the requirements"
+                response: 'Password does not fulfill the requirements'
             });
         } else if (!emailValidator.validate(email)) {
             return res.status(400).send({
-                response: "Email is not valid"
+                response: 'Email is not valid'
             });
         } else {
 
@@ -93,22 +92,22 @@ router.post('/register', async (req, res) => {
                     });
 
                     req.session.user = username;
-                    return res.redirect("/login");
+                    return res.redirect('/login');
                 }
 
             } catch (error) {
                 return res.status(500).send({
-                    response: "Something went wrong with the database."
+                    response: 'Something went wrong with the database.'
                 });
             }
         }
     } else if (password && passwordRepeat && !isPasswordTheSame) {
         return res.status(400).send({
-            response: "Passwords do not match. Fields: password and passwordRepeat"
+            response: 'Passwords do not match. Fields: password and passwordRepeat'
         });
     } else {
         return res.status(404).send({
-            response: "Missing fields: username, password, passwordRepeat"
+            response: 'Missing fields: username, password, passwordRepeat'
         });
     }
 
@@ -119,7 +118,7 @@ router.post('/register', async (req, res) => {
     Login
 */
 
-router.post("/login", async (req, res) => {
+router.post('/login', async (req, res) => {
 
     const {
         username,
@@ -132,7 +131,7 @@ router.post("/login", async (req, res) => {
                 'username': username
             }).then(async userFound => {
                 if (userFound.length == 0) {
-                    return res.redirect("/login?error");
+                    return res.redirect('/login?error');
                 } else {
                     const matchingPassword = await User.query().select('password').where({
                         'username': username
@@ -142,20 +141,20 @@ router.post("/login", async (req, res) => {
                     bcrypt.compare(password, passwordToValidate).then((result) => {
                         if (result) {
                             req.session.user = username;
-                            return res.redirect("/home-page");
+                            return res.redirect('/home-page');
                         } else {
-                            return res.redirect("login?error");
+                            return res.redirect('login?error');
                         }
                     });
                 }
 
             });
         } catch (error) {
-            return res.redirect("/login?error");
+            return res.redirect('/login?error');
         }
 
     } else {
-        return res.redirect("/login?error");
+        return res.redirect('/login?error');
     }
 
 });
@@ -165,9 +164,9 @@ router.post("/login", async (req, res) => {
 */
 
 
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy((error) => {
-        console.log("Error happend when logging out:", error);
+        console.log('Error occurred when logging out the user:', error);
     });
     return res.redirect('/');
 });

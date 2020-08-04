@@ -3,22 +3,18 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="./auth/style.css">
 
-<div class="card">
+<!-- login form -->
+<div class="body">
+    <form action="/login" method="POST" name="login_form" onsubmit="return loginValidation();">
+        <p>
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" placeholder="Type in your username">
+        </p>
+        <p>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" placeholder="Type in your password">
+        </p>
 
-    <h2 class="card-header">Log In</h2>
-    <div class="card-body">
-        <form action="/login" method="POST" name="login_form" onsubmit="return validateLogin();">
-            <p> 
-                <label for="username">Username: </label>
-                <input type="text" id="username" name="username" placeholder="Type in your username.">
-            </p> 
-            <p>
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password" placeholder="Type in your password.">
-            </p>
-
-            <button class="btn btn-warning" type="submit">Login</button>
-        </form>
-    </div>
-
+        <button class="btn btn-light" type="submit">Login</button>
+    </form>
 </div>
