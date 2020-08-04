@@ -147,7 +147,7 @@ app.get('/home-page', login, (req, res) => {
 /*
     checking the user that is logged in
 */
-router.get('/user/userSession', login, (req, res) => {
+app.get('/user/userSession', login, (req, res) => {
     if(req.session.user){
         user = req.session.user;
         return res.send({user});
