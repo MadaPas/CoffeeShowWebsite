@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const rateLimit = require('express-rate-limit');
@@ -16,11 +17,10 @@ app.use(express.urlencoded({
 app.use(express.static('public'));
 
 /* 
-    Session 
+    Session setup
 */
 const config = require('./config/config.json');
 
-// used as middleware, sits between the request and the response
 app.use(session({
     secret: config.sessionSecret,
     resave: false,
@@ -32,44 +32,32 @@ app.use(session({
 */
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
+    max: 10 // limits each IP to 10 requests
 });
 
 app.use(limiter);
 
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 8 // limit each IP to 8 requests per windowMs
-});
-
 // set specific limiter for different routes
-app.use('/register', authLimiter);
-app.use('/login', authLimiter);
-
+app.use('/register', limiter);
+app.use('/login', limiter);
 
 /* 
     Setup Knex with Objection 
 */
-
-const {
-    Model
-} = require('objection');
+const { Model } = require('objection');
 const Knex = require('knex');
-// knexFile contains our meta information about our connection
-const knexFile = require('./knexfile.js');
+const knexFile = require('./knexfile.js'); // contains meta information about the connection
 
-// Initialize knex  // knex contains the connection
-const knex = Knex(knexFile.development); // This is how you can have different environments, eg. Development, Production
+// Initialize knex (contains the connection)
+const knex = Knex(knexFile.development); 
 
-
-// Give the knex instance to objection
-// Connect the knex to our objection model, so that objection knows to use knex
+// Give knex instance to objection
+// Connect to objection model, so that objection knows to use knex
 Model.knex(knex);
 
 /*
     hashing passwords
 /*
-
 // const saltRounds = 12;
 // bcrypt.hash('admin_pass', saltRounds, function(err, hash) {
 //     console.log('admin:', hash);
@@ -94,13 +82,10 @@ const specialtyRoute = require('./routes/specialties.js');
 app.use(specialtyRoute);
 const authRoute = require('./routes/auth.js');
 app.use(authRoute);
-// const functionalityRoute = require('./routes/functionality.js');
-// app.use(functionalityRoute);
 
 /* 
     Add html files 
 */
-
 const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
@@ -133,14 +118,16 @@ const home_page = (req, res, next) => {
 }
 
 /*
-    home index => '/'
-    home user  => '/home-page'
+    Index-page -> for non-logged in users
 */
 app.get('/', home_page, (req, res) => {
     return res.send(header + indexNav + index + footer);
 
 })
 
+/*
+    Home-page -> for logged in users
+*/
 app.get('/home-page', login, (req, res) => {
     return res.send(header + homeNav + home + footer)
 
@@ -150,9 +137,11 @@ app.get('/home-page', login, (req, res) => {
     checking the user that is logged in
 */
 app.get('/user/userSession', login, (req, res) => {
-    if(req.session.user){
+    if (req.session.user) {
         user = req.session.user;
-        return res.send({user});
+        return res.send({
+            user
+        });
     }
     return res.status(404);
 });
@@ -161,7 +150,6 @@ app.get('/user/userSession', login, (req, res) => {
 /* 
     Start server 
 */
-
 const PORT = 5000;
 
 app.listen(PORT, (error) => {
