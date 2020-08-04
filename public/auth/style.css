@@ -2,11 +2,11 @@
     text-align: center;
 }
 
-input {
-    width: 300px;
-}
-
 label {
     width: 150px;
     text-align: left;
 }
+input {
+    width: 300px;
+}
+
