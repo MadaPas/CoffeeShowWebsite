@@ -23,13 +23,14 @@ const login = fs.readFileSync('./public/auth/login.html', 'utf8');
 
 
 /*
+    secure route
     if there is an user logged in -> redirect to the home user page
 */
 const home_page = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
-        next();
+        next(); // allow the next route to run
     }
 }
 
@@ -45,7 +46,6 @@ router.get('/login', home_page, (req, res) => {
 /*
     Register
 */
-
 router.post('/register', async (req, res) => {
 
     const {
@@ -117,7 +117,6 @@ router.post('/register', async (req, res) => {
 /*
     Login
 */
-
 router.post('/login', async (req, res) => {
 
     const {
@@ -162,7 +161,6 @@ router.post('/login', async (req, res) => {
 /*
     Logout
 */
-
 router.get('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(err => {

@@ -109,24 +109,26 @@ const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
 
 /*
+    secure route
     if there's no user logged in -> redirect to the login page
 */
 const login = (req, res, next) => {
     if (!req.session.user) {
         res.redirect('/login');
     } else {
-        next();
+        next(); // allow the next route to run
     }
 }
 
 /*
+    secure route
     if there is an user logged in -> redirect to the home user page
 */
 const home_page = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
-        next();
+        next(); // allow the next route to run
     }
 }
 

@@ -12,6 +12,7 @@ const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
 const searchCoffees = fs.readFileSync('./public/fragments/search/search-coffees.html', 'utf8');
 
 /*
+    secure route
     if there is no user logged in -> redirect to the login page
 */
 const login = (req, res, next) => {
