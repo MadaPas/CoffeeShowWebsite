@@ -1,0 +1,43 @@
+
+
+/* input message field*/
+#message {
+    height: 37px;
+    width: 275px;
+    
+}
+
+/* send button */
+#submit{
+    background-color: #555;
+    width: 75px;
+}
+
+/* message & send button fixed above chat button*/
+.fixedBottom {
+    position: fixed;
+    bottom: 4em;
+}
+
+/* chat button */
+.show {
+    background-color: #555;
+    color: white;
+    padding: 5px;
+    bottom: 23px;
+    right: 3em;
+    width: 100px;
+    position: fixed;
+
+}
+/* chat pops up */
+.popup {
+    width: 350px;
+    height: 500px;
+    display: none; /* *hidden by default */
+    background-color: #9D7B6C;
+    bottom: 4em;
+    right: 3em;
+    position: fixed;
+
+}

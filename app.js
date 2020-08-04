@@ -5,6 +5,17 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
+const http = require('http');
+
+/* 
+    Start server 
+*/
+app.set('port', process.env.PORT || 5000);
+
+const server = http.createServer(app).listen(app.get('port'), () => {
+    console.log('Express server is listening on port ' + app.get('port'));
+});
+
 
 /*
     Enable express to parse json
@@ -15,6 +26,26 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.static('public'));
+
+/* 
+    Socket.io
+*/
+const socket = require('socket.io')
+const escape = require('escape-html');
+const io = socket.listen(server);
+
+io.on('connection', socket => {
+
+    socket.on('a client wrote this', (data) => {
+        // emits to all clients
+        io.emit('A client said', {
+            message: escape(data.message),
+            username: data.username
+        });
+    });
+
+});
+
 
 /* 
     Session setup
@@ -32,7 +63,7 @@ app.use(session({
 */
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 10 // limits each IP to 10 requests
+    max: 100 // limits each IP to 10 requests
 });
 
 app.use(limiter);
@@ -44,12 +75,14 @@ app.use('/login', limiter);
 /* 
     Setup Knex with Objection 
 */
-const { Model } = require('objection');
+const {
+    Model
+} = require('objection');
 const Knex = require('knex');
 const knexFile = require('./knexfile.js'); // contains meta information about the connection
 
 // Initialize knex (contains the connection)
-const knex = Knex(knexFile.development); 
+const knex = Knex(knexFile.development);
 
 // Give knex instance to objection
 // Connect to objection model, so that objection knows to use knex
@@ -92,7 +125,7 @@ const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
 const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
 const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
-const chat = fs.readFileSync('./public/fragments/chat/chat.html', "utf8");
+const chat = fs.readFileSync('./public/fragments/chat/chat.html', 'utf8');
 
 
 /*
@@ -146,17 +179,4 @@ app.get('/user/userSession', login, (req, res) => {
         });
     }
     return res.status(404);
-});
-
-
-/* 
-    Start server 
-*/
-const PORT = 5000;
-
-app.listen(PORT, (error) => {
-    if (error) {
-        console.log(error);
-    }
-    console.log('Server is running on port', PORT);
 });

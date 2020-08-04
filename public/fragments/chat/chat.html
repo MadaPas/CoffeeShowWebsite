@@ -1,0 +1,21 @@
+
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="./fragments/chat/chat.css">
+
+<div>
+    <button class="btn btn-dark show" onclick="showChatForm()">Chat <i class="fas fa-heart"></i></button>
+    <div class="popup" id="chatForm">
+        <form class="form-container"></form>
+
+            <div id="conversation"></div>
+        
+            <div class="fixedBottom input-group-prepend">
+                <input class="form-control" type="text" id="message" placeholder="Type your message here." name="message" required></input>
+                <button class="btn btn-secondary" type="submit" id="submit" >Send</button>
+            </div>
+        </div>
+    </div>
+
+<script src="socket.io/socket.io.js"></script>
+<script src="./fragments/chat/chat.js"></script>
