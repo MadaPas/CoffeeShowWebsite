@@ -6,14 +6,13 @@ const Coffee = require('../models/Coffee.js');
 /* 
     Add html files 
 */
-
 const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
 const searchCoffees = fs.readFileSync('./public/fragments/search/search-coffees.html', 'utf8');
 
 /*
-    if there's no user logged in -> redirect to the login page
+    if there is no user logged in -> redirect to the login page
 */
 const login = (req, res, next) => {
     if (!req.session.user) {
@@ -21,48 +20,85 @@ const login = (req, res, next) => {
     } else {
         next();
     }
-}
+};
 
+/*
+    Displaying the coffee search page
+*/
 router.get('/search-coffees', login, (req, res) => {
     return res.send(header + homeNav + searchCoffees + footer);
 });
 
 
-// all coffees
+/*
+    All coffees*
+*/
 router.get('/coffees', async (req, res) => {
     const coffees = await Coffee.query().select();
-    return res.send({ response: coffees });
+    return res.send({
+        response: coffees
+    });
 })
 
-// coffees by name
-router.get('/coffees/name/:coffee_name', async(req, res) => {
-    const foundCoffee = await Coffee.query().select().where({ 'coffee_name': req.params.coffee_name }).limit(1);
-    if (foundCoffee.length > 0) {
-        return res.send({ response: foundCoffee });
+/*
+    Coffees sorted by name*
+*/
+router.get('/coffees/name/:name', async (req, res) => {
+    const found = await Coffee.query().select().where({
+        'name': req.params.name
+    }).limit(1);
+    if (found.length > 0) {
+        return res.send({
+            response: found
+        });
     } else {
-        return res.status(400).send({ response: 'There were no coffees of the name found.' });
+        return res.status(400).send({
+            response: 'There were no coffees of this name found.'
+        });
     }
 })
 
-// coffees by size
-router.get('/coffees/size/:coffee_size', async(req, res) => {
-    const coffeeSize = await Coffee.query().select().where({ 'coffee_size': req.params.coffee_size });
-    if (coffeeSize.length > 0) {
-        return res.send({ response: coffeeSize });
+/*
+    Coffees sorted by category*
+*/
+router.get('/coffees/category/:categoryId', async (req, res) => {
+    const found = await Coffee.query().select().where({
+        'categoryId': req.params.categoryId
+    });
+    if (found.length > 0) {
+        return res.send({
+            response: found
+        });
     } else {
-        return res.status(400).send({ response: 'There were no coffees of the requested size found.' });
+        return res.status(400).send({
+            response: 'There were no coffees in the requested category found.'
+        });
     }
 })
 
-// coffees by category
-router.get('/coffees/category/:categoryId', async(req, res) => {
-    const coffeesCategory = await Coffee.query().select().where({ 'categoryId': req.params.categoryId });
-    if (coffeesCategory.length > 0) {
-        return res.send({ response: coffeesCategory });
-    } else {
-        return res.status(400).send({ response: 'There were no coffees in the requested category found.' });
-    }
-})
+/*
+    Coffees sorted by name & category at the same time*
+*/
+router.get('/name/:name/category/:category', async (req, res) => {
+    const name = req.params.name;
+    const category = req.params.category;
 
+    const found = await Coffee.query().select('coffees.*', 'categories.category').where({
+            'name': name,
+            'categoryId': category
+        })
+        .join('categories', 'coffees.category_id', '=', 'categories.id').limit(1);
+
+    if (found.length > 0) {
+        return res.send({
+            response: found
+        });
+    } else {
+        return res.status(400).send({
+            response: 'There were no coffees of the options selected found.'
+        });
+    }
+
+});
 
 module.exports = router;
