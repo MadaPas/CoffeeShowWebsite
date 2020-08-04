@@ -39,7 +39,6 @@ app.use('/register', authLimiter);
 app.use('/login', authLimiter);
 
 
-
 /* Setup Knex with Objection */
 
 const { Model } = require('objection');
@@ -78,13 +77,17 @@ const countryRoute = require('./routes/countries.js');
 app.use(countryRoute);
 const specialtyRoute = require('./routes/specialties.js');
 app.use(specialtyRoute);
+// const authRoute = require('./routes/auth.js');
+// app.use(authRoute);
 
-const navbar = fs.readFileSync("./public/global/navbar/navbar.html", "utf8");
-const navbarUser = fs.readFileSync("./public/global/navbar/navbar-user.html", "utf8");
-const header = fs.readFileSync("./public/global/header/header.html", "utf8");
-const footer = fs.readFileSync("./public/global/footer/footer.html", "utf8");
-const mainP = fs.readFileSync("./public/global/main/main-page.html", "utf8");
-const homeP = fs.readFileSync("./public/home/home-page.html", "utf8");
+const header = fs.readFileSync("./public/main/header.html", "utf8");
+const footer = fs.readFileSync("./public/main/footer.html", "utf8");
+const navbar = fs.readFileSync("./public/main/navbar.html", "utf8");
+const userNavbar = fs.readFileSync("./public/main/navbar-user.html", "utf8");
+
+
+const mainP = fs.readFileSync("./public/main/main-page.html", "utf8");
+const homeP = fs.readFileSync("./public/main/home/home-page.html", "utf8");
 
 
 const loginPage = (req, res, next) => {
@@ -103,7 +106,6 @@ const homePage = (req, res, next) => {
     }
 }
 
-
 app.get('/', homePage, (req, res) => {
     console.log("session: ", req.sessionID);
     console.log("user: ", req.session.user);
@@ -111,11 +113,11 @@ app.get('/', homePage, (req, res) => {
     return res.send(header + navbar + mainP + footer);
 })
 
-app.get('/home-page', loginPage, (req, res) => {
+app.get('/home', loginPage, (req, res) => {
     console.log("session: ", req.sessionID);
     console.log("user: ", req.session.user);
 
-    return res.send(header + navbarUser + homeP + footer)
+    return res.send(header + userNavbar + mainP + footer)
 
 })
 
