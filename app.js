@@ -90,12 +90,13 @@ Model.knex(knex);
 
 /*
     hashing passwords
-/*
+*/ 
+
 // const saltRounds = 12;
-// bcrypt.hash('admin_pass', saltRounds, function(err, hash) {
-//     console.log('admin:', hash);
+// bcrypt.hash('madalina', saltRounds, function(err, hash) {
+//     console.log('madalina:', hash);
 // });
-// bcrypt.hash('user_pass', saltRounds, function(err, hash) {
+// bcrypt.hash('password', saltRounds, function(err, hash) {
 //     console.log('user:', hash);
 // });
 
