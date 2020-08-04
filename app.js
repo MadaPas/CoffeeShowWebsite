@@ -94,10 +94,10 @@ const specialtyRoute = require('./routes/specialties.js');
 app.use(specialtyRoute);
 const authRoute = require('./routes/auth.js');
 app.use(authRoute);
-const functionalityRoute = require('./routes/functionality.js');
-app.use(functionalityRoute);
-const sessionRoute = require('./routes/session.js');
-app.use(sessionRoute);
+// const functionalityRoute = require('./routes/functionality.js');
+// app.use(functionalityRoute);
+// const sessionRoute = require('./routes/session.js');
+// app.use(sessionRoute);
 
 
 /* 

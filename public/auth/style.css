@@ -1,0 +1,8 @@
+input {
+    width: 250px;
+}
+
+label {
+    width: 200px;
+    text-align: left;
+}
