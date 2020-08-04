@@ -36,7 +36,7 @@ $(document).ready(function () {
         */
         if (name && category) {
             $.ajax({
-                url: '/name/' + name + '/category/' + category,
+                url: 'coffees/name/' + name + '/category/' + category,
                 type: 'GET'
             }).done(data => {
                 const coffee = data.response;
