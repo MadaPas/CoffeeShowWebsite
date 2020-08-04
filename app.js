@@ -99,6 +99,50 @@ app.use(authRoute);
 // const sessionRoute = require('./routes/session.js');
 // app.use(sessionRoute);
 
+/* 
+    Add html files 
+*/
+
+const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
+const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
+const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
+const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
+
+const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
+const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
+
+
+const goToLoginPage = (req, res, next) => {
+    if (!req.session.user) {
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
+
+const goToHomePage = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/home-page');
+    } else {
+        next();
+    }
+}
+
+app.get('/', goToHomePage, (req, res) => {
+    console.log('session: ', req.sessionID);
+    console.log('user: ', req.session.user);
+
+    return res.send(header + indexNav + index + footer);
+
+})
+
+app.get('/home-page', goToLoginPage, (req, res) => {
+    console.log('session: ', req.sessionID);
+    console.log('user: ', req.session.user);
+
+    return res.send(header + homeNav + home + footer)
+
+})
 
 /* 
     Start server 
