@@ -3,7 +3,7 @@ body {
     margin-bottom: 80px;
     margin-right: 20px;
     margin-left: 20px;
-    background-color: #353334;
+    background-color: #624B41;
     color: white;
 }
 
@@ -19,7 +19,7 @@ h1 {
 }
 
 .navbar-light {
-    background-color: #751f3c;
+    background-color: #9D7B6C;
 }
 
 .navbar-light .navbar-brand {
@@ -31,6 +31,6 @@ h1 {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #751f3c;
+    background-color: #9F7D6E;
     color: rgb(255, 255, 255);
 }
