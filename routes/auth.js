@@ -52,9 +52,9 @@ router.post('/register', async (req, res) => {
         username,
         email,
         password,
-        passwordRepeat
+        repeatedPass
     } = req.body;
-    const isPasswordTheSame = password === passwordRepeat;
+    const isPasswordTheSame = password === repeatedPass;
 
     if (username && email && password && isPasswordTheSame) {
 
@@ -101,13 +101,13 @@ router.post('/register', async (req, res) => {
                 });
             }
         }
-    } else if (password && passwordRepeat && !isPasswordTheSame) {
+    } else if (password && repeatedPass && !isPasswordTheSame) {
         return res.status(400).send({
-            response: 'Passwords do not match. Fields: password and passwordRepeat'
+            response: 'Passwords do not match. Fields: password and repeatedPass'
         });
     } else {
         return res.status(404).send({
-            response: 'Missing fields: username, password, passwordRepeat'
+            response: 'Missing fields: username, password, repeatedPass'
         });
     }
 
@@ -163,16 +163,16 @@ router.post('/login', async (req, res) => {
     Logout
 */
 
-
 router.get('/logout', (req, res) => {
-    req.session.destroy((error) => {
-        console.log('Error occurred when logging out the user:', error);
-    });
-    return res.redirect('/');
+    if (req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                return next(err);
+            } else {
+                return res.redirect('/');
+            }
+        });
+    }
 });
-
-
-
-
 
 module.exports = router;
