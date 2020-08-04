@@ -48,7 +48,7 @@ router.get('/login', home_page, (req, res) => {
 
 
 /*
-    Register
+    Register post request
 */
 router.post('/register', async (req, res) => {
 
@@ -104,7 +104,7 @@ router.post('/register', async (req, res) => {
 
 
 /*
-    Login
+    Login post request 
 */
 router.post('/login', async (req, res) => {
 

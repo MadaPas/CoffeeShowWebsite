@@ -34,7 +34,7 @@ router.get('/search-coffees', login, (req, res) => {
 
 
 /*
-    All coffees*
+    Getting all coffees*
 */
 router.get('/coffees', async (req, res) => {
     const coffees = await Coffee.query().select();
@@ -44,7 +44,7 @@ router.get('/coffees', async (req, res) => {
 })
 
 /*
-    Coffees sorted by name*
+    Getting a specific coffee  (by name)*
 */
 router.get('/coffees/name/:name', async (req, res) => {
     const found = await Coffee.query().select().where({
@@ -62,7 +62,7 @@ router.get('/coffees/name/:name', async (req, res) => {
 })
 
 /*
-    Coffees sorted by category*
+    Getting coffees belonging to a specific category (by id)*
 */
 router.get('/coffees/category/:categoryId', async (req, res) => {
     const found = await Coffee.query().select().where({
@@ -80,9 +80,9 @@ router.get('/coffees/category/:categoryId', async (req, res) => {
 })
 
 /*
-    Coffees sorted by name & category at the same time*
+    Getting a specific coffee (sorted by name & category at the same time)*
 */
-router.get('/name/:name/category/:category', async (req, res) => {
+router.get('/coffees/name/:name/category/:category', async (req, res) => {
     const name = req.params.name;
     const category = req.params.category;
 
