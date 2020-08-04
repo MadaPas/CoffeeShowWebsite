@@ -92,6 +92,8 @@ const indexNav = fs.readFileSync('./public/fragments/indexNav.html', 'utf8');
 const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
 const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
+const chat = fs.readFileSync('./public/fragments/chat/chat.html', "utf8");
+
 
 /*
     secure route
@@ -129,7 +131,7 @@ app.get('/', home_page, (req, res) => {
     Home-page -> for logged in users
 */
 app.get('/home-page', login, (req, res) => {
-    return res.send(header + homeNav + home + footer)
+    return res.send(header + homeNav + home + chat + footer)
 
 })
 

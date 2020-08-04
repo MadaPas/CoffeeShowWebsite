@@ -10,9 +10,11 @@ const header = fs.readFileSync('./public/fragments/header.html', 'utf8');
 const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const homeNav = fs.readFileSync('./public/fragments/homeNav.html', 'utf8');
 const searchCoffees = fs.readFileSync('./public/fragments/search/search-coffees.html', 'utf8');
+const chat = fs.readFileSync('./public/fragments/chat/chat.html', 'utf8');
+
 
 /*
-    secure route
+    Secure route
     if there is no user logged in -> redirect to the login page
 */
 const login = (req, res, next) => {
@@ -27,7 +29,7 @@ const login = (req, res, next) => {
     Displaying the coffee search page
 */
 router.get('/search-coffees', login, (req, res) => {
-    return res.send(header + homeNav + searchCoffees + footer);
+    return res.send(header + homeNav + searchCoffees + chat + footer);
 });
 
 
