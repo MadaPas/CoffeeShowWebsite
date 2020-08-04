@@ -170,7 +170,7 @@ app.get('/home-page', login, (req, res) => {
 })
 
 /*
-    checking the user that is logged in
+    checking what user is logged in
 */
 app.get('/user/userSession', login, (req, res) => {
     if (req.session.user) {
