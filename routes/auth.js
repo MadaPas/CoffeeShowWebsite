@@ -22,7 +22,7 @@ const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const register = fs.readFileSync('./public/auth/register.html', 'utf8');
 const login = fs.readFileSync('./public/auth/login.html', 'utf8');
 
-const goToHomePage = (req, res, next) => {
+const home = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
@@ -30,11 +30,11 @@ const goToHomePage = (req, res, next) => {
     }
 }
 
-router.get('/register', goToHomePage, (req, res) => {
+router.get('/register', home, (req, res) => {
     return res.send(header + indexNav + register + footer);
 })
 
-router.get('/login', goToHomePage, (req, res) => {
+router.get('/login', home, (req, res) => {
     console.log('session:', req.sessionID);
     console.log('user:', req.session.user);
 

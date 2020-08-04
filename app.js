@@ -112,7 +112,7 @@ const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
 
 
-const goToLoginPage = (req, res, next) => {
+const login = (req, res, next) => {
     if (!req.session.user) {
         res.redirect('/login');
     } else {
@@ -120,7 +120,7 @@ const goToLoginPage = (req, res, next) => {
     }
 }
 
-const goToHomePage = (req, res, next) => {
+const home = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/home-page');
     } else {
@@ -128,7 +128,7 @@ const goToHomePage = (req, res, next) => {
     }
 }
 
-app.get('/', goToHomePage, (req, res) => {
+app.get('/', home, (req, res) => {
     console.log('session: ', req.sessionID);
     console.log('user: ', req.session.user);
 
@@ -136,7 +136,7 @@ app.get('/', goToHomePage, (req, res) => {
 
 })
 
-app.get('/home-page', goToLoginPage, (req, res) => {
+app.get('/home-page', login, (req, res) => {
     console.log('session: ', req.sessionID);
     console.log('user: ', req.session.user);
 
