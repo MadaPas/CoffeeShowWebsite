@@ -10,10 +10,10 @@ router.get('/specialties/coffee/:id', async(req, res) => {
     if (specialties.length > 0) {
         return res.send({ response: specialties });
     } else {
-        return res.status(400).send({ response: "There were no specialties of the coffee found." });
+        return res.status(400).send({ response: 'There were no specialties of the coffee found.' });
     }
 
-})
+});
 
 /*
     Getting a country selection of coffees (the coffees corresponding to a specific country (by id))*
@@ -23,9 +23,9 @@ router.get('/specialties/country/:id', async(req, res) => {
     if (specialties.length > 0) {
         return res.send({ response: specialties });
     } else {
-        res.status(400).send({ response: "There was no specialty of the country found." });
+        res.status(400).send({ response: 'There was no specialty of the country found.' });
     }
 
-})
+});
 
 module.exports = router;

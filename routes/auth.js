@@ -19,7 +19,6 @@ const footer = fs.readFileSync('./public/fragments/footer.html', 'utf8');
 const register = fs.readFileSync('./public/auth/register.html', 'utf8');
 const login = fs.readFileSync('./public/auth/login.html', 'utf8');
 
-
 /*
     secure route
     if there is an user logged in -> redirect to the home user page
@@ -37,14 +36,14 @@ const home_page = (req, res, next) => {
 */
 router.get('/register', home_page, (req, res) => {
     return res.send(header + indexNav + register + footer);
-})
+});
 
 /*
     Login page (if there's an user logged in already, redirects to user home-page)
 */
 router.get('/login', home_page, (req, res) => {
     return res.send(header + indexNav + login + footer);
-})
+});
 
 
 /*
@@ -58,13 +57,9 @@ router.post('/register', async (req, res) => {
     if (username && email && password && samePassword) {
 
         if (password.length < 8) {
-            return res.status(400).send({
-                response: 'This password does not fulfill the requirements.'
-            });
+            return res.status(400).send({ response: 'This password does not fulfill the requirements.' });
         } else if (!emailValidator.validate(email)) {
-            return res.status(400).send({
-                response: 'This email is not valid.'
-            });
+            return res.status(400).send({ response: 'This email is not valid.' });
         } else {
 
             try {
@@ -85,19 +80,13 @@ router.post('/register', async (req, res) => {
                 }
 
             } catch (error) {
-                return res.status(500).send({
-                    response: 'Something went wrong with the database.'
-                });
+                return res.status(500).send({ response: 'Something went wrong with the database.' });
             }
         }
     } else if (password && repeatedPass && !samePassword) {
-        return res.status(400).send({
-            response: 'The passwords do not match.'
-        });
+        return res.status(400).send({ response: 'The passwords do not match.' });
     } else {
-        return res.status(404).send({
-            response: 'There are missing fields.'
-        });
+        return res.status(404).send({ response: 'There are missing fields.' });
     }
 
 });

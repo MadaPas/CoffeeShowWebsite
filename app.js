@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const path = require('path');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const rateLimit = require('express-rate-limit');
@@ -30,7 +30,7 @@ app.use(express.static('public'));
 /* 
     Socket.io
 */
-const socket = require('socket.io')
+const socket = require('socket.io');
 const escape = require('escape-html'); // Escape string for use in HTML
 const io = socket.listen(server);
 
@@ -90,7 +90,7 @@ Model.knex(knex);
 
 /*
     hashing passwords
-*/ 
+*/
 
 // const saltRounds = 12;
 // bcrypt.hash('madalina', saltRounds, function(err, hash) {
@@ -128,6 +128,7 @@ const home = fs.readFileSync('./public/fragments/home.html', 'utf8');
 const index = fs.readFileSync('./public/fragments/index.html', 'utf8');
 const chat = fs.readFileSync('./public/fragments/chat/chat.html', 'utf8');
 
+const wrong = fs.readFileSync('./public/fragments/wrong.html', 'utf8');
 
 /*
     secure route
@@ -159,15 +160,15 @@ const home_page = (req, res, next) => {
 app.get('/', home_page, (req, res) => {
     return res.send(header + indexNav + index + footer);
 
-})
+});
 
 /*
     Home-page -> for logged in users
 */
 app.get('/home-page', login, (req, res) => {
-    return res.send(header + homeNav + home + chat + footer)
+    return res.send(header + homeNav + home + chat + footer);
 
-})
+});
 
 /*
     checking what user is logged in
@@ -180,4 +181,9 @@ app.get('/user/userSession', login, (req, res) => {
         });
     }
     return res.status(404);
+});
+
+app.get('/*', (req, res) => {
+    return res.send(header + wrong + footer);
+
 });

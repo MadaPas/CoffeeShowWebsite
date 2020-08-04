@@ -38,46 +38,32 @@ router.get('/search-coffees', login, (req, res) => {
 */
 router.get('/coffees', async (req, res) => {
     const coffees = await Coffee.query().select();
-    return res.send({
-        response: coffees
-    });
-})
+    return res.send({ response: coffees });
+});
 
 /*
     Getting a specific coffee  (by name)*
 */
 router.get('/coffees/name/:name', async (req, res) => {
-    const found = await Coffee.query().select().where({
-        'name': req.params.name
-    }).limit(1);
+    const found = await Coffee.query().select().where({ 'name': req.params.name }).limit(1);
     if (found.length > 0) {
-        return res.send({
-            response: found
-        });
+        return res.send({  response: found });
     } else {
-        return res.status(400).send({
-            response: 'There were no coffees of this name found.'
-        });
+        return res.status(400).send({ response: 'There were no coffees of this name found.' });
     }
-})
+});
 
 /*
     Getting coffees belonging to a specific category (by id)*
 */
 router.get('/coffees/category/:categoryId', async (req, res) => {
-    const found = await Coffee.query().select().where({
-        'categoryId': req.params.categoryId
-    });
+    const found = await Coffee.query().select().where({ 'categoryId': req.params.categoryId });
     if (found.length > 0) {
-        return res.send({
-            response: found
-        });
+        return res.send({ response: found });
     } else {
-        return res.status(400).send({
-            response: 'There were no coffees in the requested category found.'
-        });
+        return res.status(400).send({ response: 'There were no coffees in the requested category found.' });
     }
-})
+});
 
 /*
     Getting a specific coffee (sorted by name & category at the same time)*
@@ -86,20 +72,13 @@ router.get('/coffees/name/:name/category/:category', async (req, res) => {
     const name = req.params.name;
     const category = req.params.category;
 
-    const found = await Coffee.query().select('coffees.*', 'categories.category').where({
-            'name': name,
-            'categoryId': category
-        })
+    const found = await Coffee.query().select('coffees.*', 'categories.category').where({ 'name': name, 'categoryId': category })
         .join('categories', 'coffees.category_id', '=', 'categories.id').limit(1);
 
-    if (found.length > 0) {
-        return res.send({
-            response: found
-        });
+    if (found.length > 0) { 
+        return res.send({ response: found });
     } else {
-        return res.status(400).send({
-            response: 'There were no coffees of the options selected found.'
-        });
+        return res.status(400).send({ response: 'There were no coffees of the options selected found.' });
     }
 
 });

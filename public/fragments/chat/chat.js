@@ -1,18 +1,18 @@
 let open = false;
 function showChatForm() {
     if(!open){
-        document.getElementById("chatForm").style.display = "block";
+        document.getElementById('chatForm').style.display = 'block';
         open = true;
     }
     else{
-        document.getElementById("chatForm").style.display = "none";
+        document.getElementById('chatForm').style.display = 'none';
         open = false;
     }
     
 }
 
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect('http://localhost:5000');
 
 $('#submit').click(() => {
     const message = $('#message').val();
