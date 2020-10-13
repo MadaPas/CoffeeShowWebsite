@@ -38,17 +38,23 @@ router.get('/countries/name/:name', async (req, res) => {
     Post route - adding a new country to the db
 */
 router.post('/countries/add', async (req, res) => {
-    const { name } = req.body;
+    const {
+        name
+    } = req.body;
     console.log(name);
     if (name) {
         try {
-            await Country.query().insert({ name: name })
-            .then(newItem => {
-                console.log(newItem);
-                return res.redirect('/countries');
-            });
+            await Country.query().insert({
+                    name: name
+                })
+                .then(newItem => {
+                    console.log(newItem);
+                    return res.redirect('/countries');
+                });
         } catch (error) {
-            return res.send({ response: 'Something went wrong with the DB.' });
+            return res.send({
+                response: 'Something went wrong with the DB.'
+            });
         }
     }
 });
@@ -59,7 +65,9 @@ router.post('/countries/add', async (req, res) => {
 
 router.delete('/countries/delete/:id', async (req, res) => {
     await Country.query().deleteById(req.params.id).then(() => {
-        return res.send({ response: 'Country deleted!' });
+        return res.send({
+            response: 'Country deleted!'
+        });
     })
 });
 

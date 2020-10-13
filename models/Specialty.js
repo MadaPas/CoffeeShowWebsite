@@ -1,4 +1,6 @@
-const { Model } = require('objection');
+const {
+    Model
+} = require('objection');
 
 const Country = require('./Country.js');
 

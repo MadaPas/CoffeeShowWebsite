@@ -1,14 +1,14 @@
 let open = false;
+
 function showChatForm() {
-    if(!open){
+    if (!open) {
         document.getElementById('chatForm').style.display = 'block';
         open = true;
-    }
-    else{
+    } else {
         document.getElementById('chatForm').style.display = 'none';
         open = false;
     }
-    
+
 }
 
 
@@ -18,7 +18,10 @@ $('#submit').click(() => {
     const message = $('#message').val();
     const username = user;
     $('#message').val('');
-    socket.emit(`a client wrote this`, { message, username });
+    socket.emit(`a client wrote this`, {
+        message,
+        username
+    });
 });
 
 socket.on('A client said', data => {

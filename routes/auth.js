@@ -51,20 +51,33 @@ router.get('/login', home_page, (req, res) => {
 */
 router.post('/register', async (req, res) => {
 
-    const { username, email, password, repeatedPass } = req.body;
+    const {
+        username,
+        email,
+        password,
+        repeatedPass
+    } = req.body;
     const samePassword = password === repeatedPass;
 
     if (username && email && password && samePassword) {
 
         if (password.length < 8) {
-            return res.status(400).send({ response: 'This password does not fulfill the requirements.' });
+            return res.status(400).send({
+                response: 'This password does not fulfill the requirements.'
+            });
         } else if (!emailValidator.validate(email)) {
-            return res.status(400).send({ response: 'This email is not valid.' });
+            return res.status(400).send({
+                response: 'This email is not valid.'
+            });
         } else {
 
             try {
-                const userFound = await User.query().select().where({ 'username': username }).limit(1);
-                const emailFound = await User.query().select().where({ 'email': email }).limit(1);
+                const userFound = await User.query().select().where({
+                    'username': username
+                }).limit(1);
+                const emailFound = await User.query().select().where({
+                    'email': email
+                }).limit(1);
 
                 if (userFound.length > 0 || emailFound.length > 0) {
 
@@ -73,20 +86,30 @@ router.post('/register', async (req, res) => {
                 } else {
 
                     const hashedPassword = await bcrypt.hash(password, saltRounds);
-                    const createdUser = await User.query().insert({ username, email, password: hashedPassword });
+                    const createdUser = await User.query().insert({
+                        username,
+                        email,
+                        password: hashedPassword
+                    });
 
                     req.session.user = username;
                     return res.redirect('/login');
                 }
 
             } catch (error) {
-                return res.status(500).send({ response: 'Something went wrong with the database.' });
+                return res.status(500).send({
+                    response: 'Something went wrong with the database.'
+                });
             }
         }
     } else if (password && repeatedPass && !samePassword) {
-        return res.status(400).send({ response: 'The passwords do not match.' });
+        return res.status(400).send({
+            response: 'The passwords do not match.'
+        });
     } else {
-        return res.status(404).send({ response: 'There are missing fields.' });
+        return res.status(404).send({
+            response: 'There are missing fields.'
+        });
     }
 
 });
@@ -97,29 +120,36 @@ router.post('/register', async (req, res) => {
 */
 router.post('/login', async (req, res) => {
 
-    const { username, password } = req.body;
+    const {
+        username,
+        password
+    } = req.body;
 
     if (username && password) {
         try {
-            User.query().select('username').where({ 'username': username })
-            .then(async userFound => {
-                if (userFound.length == 0) {
-                    return res.redirect('/login?error');
-                } else {
-                    const userPassword = await User.query().select('password').where({ 'username': username }).limit(1);
-                    const validatePassword = userPassword[0].password;
+            User.query().select('username').where({
+                    'username': username
+                })
+                .then(async userFound => {
+                    if (userFound.length == 0) {
+                        return res.redirect('/login?error');
+                    } else {
+                        const userPassword = await User.query().select('password').where({
+                            'username': username
+                        }).limit(1);
+                        const validatePassword = userPassword[0].password;
 
-                    bcrypt.compare(password, validatePassword).then((result) => {
-                        if (result) {
-                            req.session.user = username;
-                            return res.redirect('/home-page');
-                        } else {
-                            return res.redirect('login?error');
-                        }
-                    });
-                }
+                        bcrypt.compare(password, validatePassword).then((result) => {
+                            if (result) {
+                                req.session.user = username;
+                                return res.redirect('/home-page');
+                            } else {
+                                return res.redirect('login?error');
+                            }
+                        });
+                    }
 
-            });
+                });
         } catch (error) {
             return res.redirect('/login?error');
         }
