@@ -38,7 +38,7 @@ router.get('/user/username/:username', async (req, res) => {
 /*
     Getting a specific user (by it's id)*
 */
-router.get('/user/:id', async (req, res) => {
+router.get('/username/:id', async (req, res) => {
     const found = await User.query().select().where({ 'id': req.params.id }).limit(1);
     if (found.length > 0) {
         return res.send({ response: found });
